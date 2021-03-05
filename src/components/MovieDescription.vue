@@ -1,21 +1,28 @@
 <template>
   <section class="movie-descript">
-    <div>{{ this.movie.name }}</div>
-    <img
-      :src="`http://imdb2.mars-server.net${this.movie.img}`"
-      :alt="this.movie.name"
-    />
-    <article>
-      <p>{{ this.movie.desc }}</p>
-    </article>
-
-    <p></p>
+    <the-header></the-header>
+    <div class="desc-container">
+      <div class="left">
+        <img
+          :src="`http://imdb2.mars-server.net${this.movie.img}`"
+          :alt="this.movie.name"
+        />
+      </div>
+      <article>
+        <h1>{{ this.movie.name }}</h1>
+        <p>{{ this.movie.desc }}</p>
+      </article>
+    </div>
   </section>
 </template>
 
 <script>
+import TheHeader from "./TheHeader.vue";
 import { mapGetters } from "vuex";
 export default {
+  components: {
+    TheHeader,
+  },
   data() {
     return {
       movieID: this.$route.params.id,
@@ -53,5 +60,26 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.desc-container {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+
+  .left {
+    padding: 20px;
+  }
+
+  article {
+    padding: 20px;
+    h1 {
+      color: #42b883;
+    }
+    p {
+      width: 70%;
+      color: #fefefe;
+    }
+  }
+}
 </style>
